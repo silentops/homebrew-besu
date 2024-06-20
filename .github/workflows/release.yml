@@ -38,4 +38,5 @@ jobs:
           git commit -s -m "Update version to ${VERSION}"
           gh pr create --base main --title "Update version to ${VERSION}"
         env:
-          VERSION: ${{ inputs.version }}  
+          VERSION: ${{ inputs.version }}
+          GH_TOKEN: ${{ github.token }}
