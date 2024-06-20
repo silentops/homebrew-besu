@@ -1,0 +1,41 @@
+name: release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        type: string
+        required: true
+      git-user-name:
+        type: string
+        required: true
+      git-user-email:
+        type: string
+        required: true
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+      
+      - name: Update code
+        run: |
+          bash updateBesu.sh ${{ inputs.version }}
+
+      - name: Setup git user
+        run: |
+          git config user.name "${{ inputs.git-user-name }}"
+          git config user.email "${{ inputs.git-user-email }}"
+
+      - name: Commit changes and create PR
+        run: |
+          git add besu.rb
+          git commit -s -m "Update version to ${VERSION}"
+          gh pr create --base main --title "Update version to ${VERSION}"
+        env:
+          VERSION: ${{ inputs.version }}  
