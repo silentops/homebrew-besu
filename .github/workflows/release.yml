@@ -38,7 +38,6 @@ jobs:
           git add besu.rb
           git commit -s -m "Update version to ${VERSION}"
           git push origin update-${VERSION}
-          gh pr create --base main --fill --head update-${VERSION}
         env:
           VERSION: ${{ inputs.version }}
           GH_TOKEN: ${{ github.token }}
