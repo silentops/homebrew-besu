@@ -31,7 +31,7 @@ jobs:
           # So using the 'stable' word in grep which seems appear only in the line required
           INSTALLED_VERSION=$(brew info besu | grep 'stable' | sed 's|.* stable \([0-9]*\.[0-9]*\.[0-9]*\).*|\1|g')
 
-          if [[ $LATEST_VERSION == $INSTALLED_VERSION ]]
+          if [[ "$LATEST_VERSION" == "$INSTALLED_VERSION" ]]
           then
             echo "Latest version [$LATEST_VERSION] match installed version [$INSTALLED_VERSION]"
             exit 0
