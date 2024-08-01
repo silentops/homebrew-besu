@@ -26,8 +26,17 @@ jobs:
       - name: Verify Besu version
         run: |
           LATEST_VERSION=$(grep url besu.rb | sed 's|.*download/\([^/]*\).*|\1|g')
-          echo "Latest version [$LATEST_VERSION]"
-          INSTALLED_VERSION=$(brew info besu | grep 'stable' | sed 's|.* stable \([0-9]*\.[0-9]*\.[0-9]*\).*|\1|g')
-          echo "Installed version [$INSTALLED_VERSION]"
-
           
+          # Could not grep the line using the besu: with GitHub runner
+          # So using the 'stable' word in grep which seems appear only in the line required
+          INSTALLED_VERSION=$(brew info besu | grep 'stable' | sed 's|.* stable \([0-9]*\.[0-9]*\.[0-9]*\).*|\1|g')
+
+          if [[ $LATEST_VERSION == $INSTALLED_VERSION ]]
+          then
+            echo "Latest version [$LATEST_VERSION] match installed version [$INSTALLED_VERSION]"
+            exit 0
+          else
+            echo "ERROR: Latest version [$LATEST_VERSION] does not match installed version [$INSTALLED_VERSION]"
+            exit 1
+          fi
+ 
