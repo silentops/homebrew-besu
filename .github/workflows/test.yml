@@ -17,8 +17,9 @@ jobs:
 
       - name: Verify Besu installed
         run: |
-          brew list 
+          brew list | grep -q besu
       
-      # - name: Verify Besu version
-      #   run: |
+      - name: Verify Besu version
+        run: |
+          grep 
           
