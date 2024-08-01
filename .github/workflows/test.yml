@@ -17,9 +17,13 @@ jobs:
 
       - name: Verify Besu installed
         run: |
-          brew list | grep -q besu
+          brew list | grep besu || {
+            echo "ERROR: Could not find besu"
+            exit 1
+          }
       
       - name: Verify Besu version
         run: |
-          grep 
+          VERSION=$(grep url besu.rb | sed 's|.*download/\([^/]*\).*|\1|g')
+          echo "Verify version [$VERSION]"
           
