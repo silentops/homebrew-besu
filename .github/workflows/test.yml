@@ -28,7 +28,7 @@ jobs:
           LATEST_VERSION=$(grep url besu.rb | sed 's|.*download/\([^/]*\).*|\1|g')
           echo "Latest version [$LATEST_VERSION]"
           INSTALLED_VERSION=$(brew info besu | grep "besu:" | sed 's|.* stable \([0-9]*\.[0-9]*\.[0-9]*\).*|\1|g')
-          brew info besu
           echo "Installed version [$INSTALLED_VERSION]"
-
+          brew info besu
+          brew info besu | grep "besu:" | sed 's|.* stable \([0-9]*\.[0-9]*\.[0-9]*\).*|\1|g'
           
