@@ -27,9 +27,7 @@ jobs:
         run: |
           LATEST_VERSION=$(grep url besu.rb | sed 's|.*download/\([^/]*\).*|\1|g')
           echo "Latest version [$LATEST_VERSION]"
-          INSTALLED_VERSION=$(brew info besu | grep 'hyperledger/besu/besu:' | sed 's|.* stable \([0-9]*\.[0-9]*\.[0-9]*\).*|\1|g')
+          INSTALLED_VERSION=$(brew info besu | grep 'stable' | sed 's|.* stable \([0-9]*\.[0-9]*\.[0-9]*\).*|\1|g')
           echo "Installed version [$INSTALLED_VERSION]"
-          echo ====
-          brew info besu | grep 'besu\:'
-          # brew info besu | grep "besu:" | sed 's|.* stable \([0-9]*\.[0-9]*\.[0-9]*\).*|\1|g'
+
           
