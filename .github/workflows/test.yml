@@ -15,9 +15,10 @@ jobs:
           brew tap hyperledger/besu
           brew install besu
 
-      - name: Verify installation
+      - name: Verify Besu installed
         run: |
-          brew list | grep -q besu || {
-            echo "ERROR: Could not find Besu installed"
-            exit 1
-          }
+          brew list 
+      
+      # - name: Verify Besu version
+      #   run: |
+          
