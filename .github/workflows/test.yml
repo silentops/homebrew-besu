@@ -12,4 +12,4 @@ jobs:
 
       - name: Install Besu
         run: |
-          homebrew tap hyperledger/besu
+          brew tap hyperledger/besu
