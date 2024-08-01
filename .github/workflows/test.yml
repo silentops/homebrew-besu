@@ -13,3 +13,4 @@ jobs:
       - name: Install Besu
         run: |
           brew tap hyperledger/besu
+          brew upgrade besu
